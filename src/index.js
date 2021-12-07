@@ -5,8 +5,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-const widgetDivs = document.querySelectorAll(`.sulbaran-zaguans-widget`);
-console.log(`h`);
+const widgetDivs = document.querySelectorAll(`.sb-result-section`);
 widgetDivs.forEach((div) => {
   ReactDOM.render(
     <React.StrictMode>

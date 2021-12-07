@@ -29,7 +29,6 @@ function StockQuote(props) {
         },
       })
       .then((result) => {
-        debugger;
         if (!result.data.data || result.data.data.length <= 0) {
           return;
         }
