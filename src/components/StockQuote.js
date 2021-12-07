@@ -5,7 +5,7 @@ import axios from "../axios";
 const MARKET_STACK_QUOTE_URL = `${process.env.REACT_APP_MARKETSTACK_BASE_URL}/intraday`;
 const MARKET_STACK_TICKER_URL = `${process.env.REACT_APP_MARKETSTACK_BASE_URL}/tickers`;
 
-function StockQuote(props) {
+function StockQuote({ symbol = "AMC" }) {
   const [quote, setQuote] = useState({
     price: "--",
     var: "--",
@@ -21,7 +21,7 @@ function StockQuote(props) {
       .get(MARKET_STACK_QUOTE_URL, {
         params: {
           access_key: process.env.REACT_APP_MARKETSTACK_ACCESS_KEY,
-          symbols: props.symbol,
+          symbols: symbol,
           interval: "15min",
           date_from: moment().subtract(1, "day").format("YYYY-MM-DD"),
           date_to: moment().format("YYYY-MM-DD"),
@@ -43,7 +43,7 @@ function StockQuote(props) {
 
   useEffect(() => {
     axios
-      .get(`${MARKET_STACK_TICKER_URL}/${props.symbol}`, {
+      .get(`${MARKET_STACK_TICKER_URL}/${symbol}`, {
         params: {
           access_key: process.env.REACT_APP_MARKETSTACK_ACCESS_KEY,
         },
@@ -64,7 +64,7 @@ function StockQuote(props) {
   return (
     <div className={"quote rounded-lg shadow-md p-4 bg-gray-800"}>
       <span className={"quoteSymbol text-sm text-white font-bold"}>
-        {props.symbol}
+        {symbol}
       </span>
       <span className={"quoteSymbol text-2xs text-gray-400 ml-1"}>
         {stock.name}
